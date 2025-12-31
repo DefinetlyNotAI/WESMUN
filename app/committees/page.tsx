@@ -160,12 +160,10 @@ export default function CommitteesPage() {
                                                         <Users size={12} className="mr-1"/>
                                                         {committee.committeeSize}
                                                     </Badge>
-                                                    <a href={`mailto:${committee.email}`} className="inline-block">
-                                                        <Badge variant="outline" className="border-muted-foreground/50 cursor-pointer">
-                                                            <MdEmail size={12} className="mr-1" />
-                                                            {committee.email}
-                                                        </Badge>
-                                                    </a>
+                                                    <Badge variant="outline" className="border-muted-foreground/50 cursor-pointer">
+                                                        <MdEmail size={12} className="mr-1" />
+                                                        {committee.email}
+                                                    </Badge>
                                                 </div>
                                                 <p className="text-sm text-muted-foreground leading-relaxed">{committee.description}</p>
                                             </div>

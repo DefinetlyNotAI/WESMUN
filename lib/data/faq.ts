@@ -27,7 +27,7 @@ export const faqs: FAQ[] = [
     {
         id: "registration-deadline",
         question: "When is the registration deadline?",
-        answer: "The final registration deadline is January 18th, 2026. However, we encourage early registration as committee spots are limited and fill up quickly. Early bird pricing ends January 1st, 2026.",
+        answer: "The final registration deadline is January 10th, 2026. However, we encourage early registration as committee spots are limited and fill up quickly. Early bird pricing ends January 1st, 2026.",
         category: "Registration",
     },
     {
