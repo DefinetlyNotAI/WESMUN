@@ -271,7 +271,7 @@ export const committees: Committee[] = [
             "Assessing the geopolitical and security implications of foreign military bases in conflict-affected regions."
         ],
         chair1: {name: "Mishall Shahid", image: "/img/com/single/Mishall_Shahid_UNSC.webp"},
-        chair2: {name: "Adithya Rajesh", image: "/img/com/single/Adithya_Rajesh_UNSC.webp"},
+        chair2: {name: "Ram Prasad", image: "/img/com/single/Ram_Prasad_UNSC.webp"},
         chair3: {name: "Antony Michael", image: "/img/com/single/Antony_Michael_UNSC.webp"},
         bannerImage: "/img/com/banner/unsc.webp",
         signupLink: {
@@ -313,7 +313,7 @@ export const committees: Committee[] = [
         description: "CLASSIFIED",
         detailedDescription: "CLASSIFIED INFORMATION",
         topics: ["CLASSIFIED INFORMATION"],
-        chair1: {name: "Ram Prasad", image: "/img/com/single/Ram_Prasad_INTERPOL.webp"},
+        chair1: {name: "Saisha Shukla", image: "/img/com/single/Saisha_Shukla_INTERPOL.webp"},
         chair2: {name: "Joshua John Ligo", image: "/img/com/single/Joshua_John_Ligo_INTERPOL.webp"},
         chair3: {name: "Dua Ghani", image: "/img/com/single/Dua_Ghani_INTERPOL.webp"},
         bannerImage: "/img/com/banner/interpol.webp",
