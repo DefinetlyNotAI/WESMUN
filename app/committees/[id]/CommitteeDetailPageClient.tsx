@@ -28,7 +28,7 @@ export default function CommitteeDetailPageClient({committee}: CommitteeDetailPa
             if (!mounted) return
             setPdfAvailable(ok)
         }
-        check()
+        check().catch(console.error)
         return () => { mounted = false }
     }, [committee.backgroundGuidePdf])
 
@@ -188,12 +188,18 @@ export default function CommitteeDetailPageClient({committee}: CommitteeDetailPa
 
                     {/* Action Buttons */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <Button asChild variant="outline" className={`h-12 text-base bg-transparent ${pdfAvailable === false ? 'opacity-60 cursor-not-allowed' : ''}`} aria-disabled={pdfAvailable === false}>
-                            <a href={committee.backgroundGuidePdf} download onClick={(e) => { if (pdfAvailable === false) e.preventDefault() }} title={pdfAvailable === false ? 'We are working on creating the background guides' : ''}>
-                                <Download className="mr-2" size={12}/>
-                                {CommitteeDetailPage.DOWNLOAD_BG_GUIDE}
-                            </a>
-                        </Button>
+                        {committee.backgroundGuidePdf.includes("CLASSIFIED") ? (
+                            <Button variant="outline" className="h-12 text-base bg-transparent opacity-60 cursor-not-allowed" disabled>
+                                CLASSIFIED
+                            </Button>
+                        ) : (
+                            <Button asChild variant="outline" className={`h-12 text-base bg-transparent ${pdfAvailable === false ? 'opacity-60 cursor-not-allowed' : ''}`} aria-disabled={pdfAvailable === false}>
+                                <a href={committee.backgroundGuidePdf} download onClick={(e) => { if (pdfAvailable === false) e.preventDefault() }} title={pdfAvailable === false ? 'We are working on creating the background guides' : ''}>
+                                    <Download className="mr-2" size={12}/>
+                                    {CommitteeDetailPage.DOWNLOAD_BG_GUIDE}
+                                </a>
+                            </Button>
+                        )}
 
                         <Button
                             asChild

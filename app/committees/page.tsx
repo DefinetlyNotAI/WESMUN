@@ -169,21 +169,23 @@ export default function CommitteesPage() {
                                             </div>
 
                                             {/* PDF indicator / download availability - show a small icon that reflects availability */}
-                                            <div className="flex items-center ml-4">
-                                                <button
-                                                    className={`inline-flex items-center px-3 py-2 rounded-md text-sm border ${pdfAvailableMap[committee.id] ? 'bg-transparent border-transparent text-primary hover:underline' : 'bg-muted text-muted-foreground cursor-not-allowed'} `}
-                                                    aria-disabled={!pdfAvailableMap[committee.id]}
-                                                    title={pdfAvailableMap[committee.id] ? 'Download background guide' : 'We are working on creating the background guides'}
-                                                    onClick={(e) => {
-                                                        if (!pdfAvailableMap[committee.id]) {
-                                                            e.preventDefault()
-                                                            e.stopPropagation()
-                                                        }
-                                                    }}
-                                                >
-                                                    <Download className={pdfAvailableMap[committee.id] ? 'text-primary' : 'text-muted-foreground'} size={16} />
-                                                </button>
-                                            </div>
+                                            {!committee.backgroundGuidePdf.includes("CLASSIFIED") && (
+                                                <div className="flex items-center ml-4">
+                                                    <button
+                                                        className={`inline-flex items-center px-3 py-2 rounded-md text-sm border ${pdfAvailableMap[committee.id] ? 'bg-transparent border-transparent text-primary hover:underline' : 'bg-muted text-muted-foreground cursor-not-allowed'} `}
+                                                        aria-disabled={!pdfAvailableMap[committee.id]}
+                                                        title={pdfAvailableMap[committee.id] ? 'Download background guide' : 'We are working on creating the background guides'}
+                                                        onClick={(e) => {
+                                                            if (!pdfAvailableMap[committee.id]) {
+                                                                e.preventDefault()
+                                                                e.stopPropagation()
+                                                            }
+                                                        }}
+                                                    >
+                                                        <Download className={pdfAvailableMap[committee.id] ? 'text-primary' : 'text-muted-foreground'} size={16} />
+                                                    </button>
+                                                </div>
+                                            )}
 
                                         </div>
                                     </CardHeader>
