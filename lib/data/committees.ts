@@ -344,7 +344,8 @@ export const committees: Committee[] = [
         backgroundGuidePdf: "CLASSIFIED",
         committeeSize: "CLASSIFIED",
         difficulty: "Advanced",
-        email: "hcc@wesmun.com"
+        email: "hcc@wesmun.com",
+        best: true
     }
 ];
 

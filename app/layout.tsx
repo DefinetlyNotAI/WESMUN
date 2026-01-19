@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from 'next'
 import {Analytics} from "@vercel/analytics/next"
+import {Toaster} from "@/components/ui/toaster"
 import "./globals.css"
 
 // Provide a metadata base so Next's metadata API (and any generated URLs) use the canonical host
@@ -37,6 +38,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
         </head>
         <body className="font-sans antialiased">
         {children}
+        <Toaster />
         <Analytics/>
         </body>
         </html>

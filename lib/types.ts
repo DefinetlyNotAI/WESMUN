@@ -5,6 +5,7 @@ export interface signupLink {
 }
 
 export interface Committee {
+    best?: boolean;
     id: string
     name: string
     abbreviation: string

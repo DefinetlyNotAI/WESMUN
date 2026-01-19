@@ -14,12 +14,27 @@ import {CommitteeDetailPageClientProps} from "@/lib/types";
 import React, {useEffect, useState} from "react"
 import {checkUrlExists} from "@/lib/checkResource"
 import {MdEmail} from "react-icons/md";
+import {useToast} from "@/hooks/use-toast"
 
 export default function CommitteeDetailPageClient({committee}: CommitteeDetailPageClientProps) {
+    const {toast} = useToast()
     const [pdfAvailable, setPdfAvailable] = useState<boolean | null>(null)
     const [chair1Src, setChair1Src] = useState(committee.chair1?.image || CommitteeDetailPage.PLACEHOLDER_IMAGE)
     const [chair2Src, setChair2Src] = useState(committee.chair2?.image || CommitteeDetailPage.PLACEHOLDER_IMAGE)
     const [chair3Src, setChair3Src] = useState(committee.chair3?.image || CommitteeDetailPage.PLACEHOLDER_IMAGE)
+
+    // Easter egg for HCC committee
+    useEffect(() => {
+        if (committee.best === true) {
+            const timer = setTimeout(() => {
+                toast({
+                    title: "Best Committee IMO",
+                    duration: 2000,
+                })
+            }, 500)
+            return () => clearTimeout(timer)
+        }
+    }, [committee.best, toast])
 
     useEffect(() => {
         let mounted = true
