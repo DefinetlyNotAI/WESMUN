@@ -23,18 +23,42 @@ export default function CommitteeDetailPageClient({committee}: CommitteeDetailPa
     const [chair2Src, setChair2Src] = useState(committee.chair2?.image || CommitteeDetailPage.PLACEHOLDER_IMAGE)
     const [chair3Src, setChair3Src] = useState(committee.chair3?.image || CommitteeDetailPage.PLACEHOLDER_IMAGE)
 
-    // Easter egg for HCC committee
+    // Easter egg for HCC committee (deferred to idle time to avoid main-thread lag)
     useEffect(() => {
-        if (committee.best === true) {
-            const timer = setTimeout(() => {
+        if (!committee.best) return;
+
+        let mounted = true;
+        let idleId: number | undefined;
+        let timeoutId: number | undefined;
+
+        const runToast = () => {
+            if (!mounted) return;
+            timeoutId = window.setTimeout(() => {
+                if (!mounted) return;
                 toast({
                     title: "Best Committee IMO",
                     duration: 2000,
-                })
-            }, 500)
-            return () => clearTimeout(timer)
+                });
+            }, 500);
+        };
+
+        if (typeof window !== "undefined") {
+            // requestIdleCallback is not on all TS lib defs, so cast to any
+            const w = window as any;
+            if ("requestIdleCallback" in w) {
+                idleId = w.requestIdleCallback(runToast);
+            } else {
+                timeoutId = window.setTimeout(runToast, 0);
+            }
         }
-    }, [committee.best, toast])
+
+        return () => {
+            mounted = false;
+            if (idleId !== undefined) (window as any).cancelIdleCallback?.(idleId);
+            if (timeoutId !== undefined) clearTimeout(timeoutId);
+        };
+    }, [committee.best, toast]);
+
 
     useEffect(() => {
         let mounted = true
