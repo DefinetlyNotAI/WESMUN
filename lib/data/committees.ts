@@ -106,7 +106,7 @@ export const committees: Committee[] = [
             "Addressing how global challenges such as climate change, natural disasters, and pandemics affect children's health and well-being."
         ],
         chair1: {name: "Wasiq Nabeel", image: "/img/com/single/Wasiq_Nabeel_UNICEF.webp"},
-        chair2: {name: "Zaina Islam", image: "/img/com/single/Zaina_Islam_UNICEF.webp"},
+        chair2: {name: "Zaina Islam", image: "/img/com/single/Zeina_Islam_UNICEF.webp"},
         chair3: {name: "Ahmed Saad", image: "/img/com/single/Ahmed_Saad_UNICEF.webp"},
         bannerImage: "/img/com/banner/unicef.webp",
         signupLink: {
