@@ -25,7 +25,7 @@ export default function CommitteeDetailPageClient({committee}: CommitteeDetailPa
 
     // Easter egg for HCC committee (deferred to idle time to avoid main-thread lag)
     useEffect(() => {
-        if (!committee.best) return;
+        if (!committee.easterEggMsg) return;
 
         let mounted = true;
         let idleId: number | undefined;
@@ -36,7 +36,7 @@ export default function CommitteeDetailPageClient({committee}: CommitteeDetailPa
             timeoutId = window.setTimeout(() => {
                 if (!mounted) return;
                 toast({
-                    title: "Best Committee IMO",
+                    title: committee.easterEggMsg,
                     duration: 2000,
                 });
             }, 500);
@@ -57,7 +57,7 @@ export default function CommitteeDetailPageClient({committee}: CommitteeDetailPa
             if (idleId !== undefined) (window as any).cancelIdleCallback?.(idleId);
             if (timeoutId !== undefined) clearTimeout(timeoutId);
         };
-    }, [committee.best, toast]);
+    }, [committee.easterEggMsg, toast]);
 
 
     useEffect(() => {

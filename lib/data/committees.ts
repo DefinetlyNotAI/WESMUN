@@ -345,7 +345,7 @@ export const committees: Committee[] = [
         committeeSize: "CLASSIFIED",
         difficulty: "Advanced",
         email: "hcc@wesmun.com",
-        best: true
+        easterEggMsg: "Best Committee IMO"
     }
 ];
 

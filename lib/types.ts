@@ -5,7 +5,6 @@ export interface signupLink {
 }
 
 export interface Committee {
-    best?: boolean;
     id: string
     name: string
     abbreviation: string
@@ -30,6 +29,7 @@ export interface Committee {
     committeeSize: string
     difficulty: "Beginner" | "Intermediate" | "Advanced"
     email: string
+    easterEggMsg?: string;
 }
 
 export interface CommitteeDetailPageClientProps {
