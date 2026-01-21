@@ -144,7 +144,7 @@ export const committees: Committee[] = [
         email: "ga1@wesmun.com"
     },
     {
-        id: "arab-league",
+        id: "al",
         name: "Arab League",
         abbreviation: "AR",
         description: "A regional intergovernmental organization representing the Arab world, focused on unity, stability, and development.",

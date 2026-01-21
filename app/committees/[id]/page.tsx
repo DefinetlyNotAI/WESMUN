@@ -1,5 +1,5 @@
 import CommitteeDetailPageClient from "./CommitteeDetailPageClient"
-import {notFound} from "next/navigation"
+import {notFound, redirect} from "next/navigation"
 import {committees} from "@/lib/data/committees"
 import type { Metadata } from 'next'
 import type { Committee } from '@/lib/types'
@@ -13,14 +13,21 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: any): Promise<Metadata> {
     const resolvedParams = await params
     const id = resolvedParams?.id
-    const committee: Committee | undefined = committees.find((c) => c.id === String(id))
+    const idStr = id == null ? undefined : String(id)
+
+    // Try exact match first, then case-insensitive fallback so metadata is correct
+    let committee: Committee | undefined = committees.find((c) => c.id === String(idStr))
+    if (!committee && idStr) {
+        committee = committees.find((c) => c.id.toLowerCase() === idStr.toLowerCase())
+    }
+
     if (!committee) {
         return {}
     }
 
     return {
         alternates: {
-            canonical: `https://wesmun.com/committees/${id}`,
+            canonical: `https://wesmun.com/committees/${committee.id}`,
         },
         title: committee.name || 'Committee',
         description: committee.description || undefined,
@@ -40,9 +47,21 @@ export default async function CommitteeDetailPage(props: any) {
         id = await id
     }
 
-    // find committee safely
-    const committee = (id == null) ? undefined : committees.find((c) => c.id === String(id))
+    const idStr = id == null ? undefined : String(id)
 
+    // Try exact lookup first
+    let committee = (idStr == null) ? undefined : committees.find((c) => c.id === idStr)
+
+    if (!committee && idStr) {
+        // Case-insensitive match: redirect to canonical path if found
+        const ciMatch = committees.find((c) => c.id.toLowerCase() === idStr.toLowerCase())
+        if (ciMatch) {
+            // Redirect to the canonical (correctly-cased) id
+            redirect(`/committees/${ciMatch.id}`)
+        }
+    }
+
+    // If still not found, return 404
     if (!committee) {
         notFound()
     }
